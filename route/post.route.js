@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const Post = require('../model/post.model')
+const checkLogin = require('../middlewares/checkLogin');
 
 
 // Get All Post
 // Read All Post
 
-router.get('/', async (req, res) => {
+router.get('/', checkLogin, async (req, res) => {
     try {
         const post = await Post.find();
         res.status(200).json(post);
